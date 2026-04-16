@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silva Ultramind Funnel Audit — Complete Part 1</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#08080D;--s:#101018;--s2:#181824;--s3:#20202E;--t:#E8E6F0;--t2:#A8A4B8;--t3:#6B6780;--a:#8B5CF6;--a2:#A78BFA;--r:#EF4444;--g:#10B981;--y:#F59E0B;--b:#3B82F6;--f:'DM Sans',sans-serif;--fd:'DM Serif Display',serif;--fm:'JetBrains Mono',monospace;--rad:12px}
+html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color:var(--t);line-height:1.75;-webkit-font-smoothing:antialiased;font-size:15px}::selection{background:var(--a);color:#fff}
+a{color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3);transition:all .2s}a:hover{color:#fff;border-color:var(--a)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);padding:0 2rem;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-b{font-family:var(--fd);font-size:1rem;color:var(--a2)}.nav-l{display:flex;gap:1.2rem;flex-wrap:wrap}.nav-l a{color:var(--t3);border:0;font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}.nav-l a:hover{color:var(--a2)}
+.c{max-width:1080px;margin:0 auto;padding:0 2rem}section{padding:4rem 0}
+.sl{font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--a2);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}.sl::before{content:'';width:20px;height:2px;background:var(--a)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.3rem);color:#fff;margin-bottom:.75rem;line-height:1.2}
+h3{font-weight:700;font-size:1.05rem;color:#fff;margin-bottom:.6rem;margin-top:1.75rem}
+h4{font-weight:600;font-size:.88rem;color:var(--a2);margin-bottom:.4rem;margin-top:1.25rem}
+p{margin-bottom:.85rem;color:var(--t2)}p strong{color:var(--t);font-weight:600}
+.dv{height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.3),transparent);margin:3.5rem 0}
+/* Cards */
+.vd{background:var(--s);border-radius:14px;padding:2rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.vd.red{border:1px solid rgba(239,68,68,.2)}.vd.red::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--r),var(--y))}
+.vd.yellow{border:1px solid rgba(245,158,11,.2)}.vd.yellow::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--y)}
+.vd.green{border:1px solid rgba(16,185,129,.2)}.vd.green::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g)}
+.vd.purple{border:1px solid rgba(139,92,246,.2)}.vd.purple::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a)}
+.vd-l{font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem}
+.vd.red .vd-l{color:var(--r)}.vd.yellow .vd-l{color:var(--y)}.vd.green .vd-l{color:var(--g)}.vd.purple .vd-l{color:var(--a2)}
+.vd h3{font-family:var(--fd);font-size:1.3rem;margin-top:0;margin-bottom:.75rem}
+/* Metrics */
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.85rem;margin:1.5rem 0}
+.mc{background:var(--s);border:1px solid rgba(255,255,255,.06);border-radius:var(--rad);padding:1.3rem}
+.mc .lb{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.35rem}
+.mc .vl{font-family:var(--fd);font-size:1.7rem;color:#fff;margin-bottom:.15rem}
+.mc .su{font-size:.72rem;color:var(--t3)}
+.mc.bad .vl{color:var(--r)}.mc.bad{border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.04)}
+.mc.warn .vl{color:var(--y)}.mc.warn{border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.04)}
+.mc.good .vl{color:var(--g)}.mc.good{border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.04)}
+/* Funnel */
+.fv{margin:2rem 0;padding:1.5rem;background:var(--s);border-radius:14px;border:1px solid rgba(255,255,255,.06)}
+.fs{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)}.fs:last-child{border-bottom:none}
+.fbw{flex:1}.fb{height:30px;border-radius:5px;display:flex;align-items:center;padding:0 .85rem;font-size:.72rem;font-weight:600;color:#fff;position:relative}
+.fb .n{position:absolute;right:10px;font-family:var(--fm);font-size:.7rem;opacity:.8}
+.fl{width:130px;font-size:.75rem;color:var(--t2);font-weight:500;flex-shrink:0}
+.fr{width:85px;text-align:right;font-family:var(--fm);font-size:.75rem;flex-shrink:0}.fr.bad{color:var(--r)}.fr.warn{color:var(--y)}.fr.good{color:var(--g)}
+/* Pillars */
+.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.5rem 0}
+.pill{background:var(--s);border-radius:var(--rad);padding:1.5rem;border:1px solid rgba(255,255,255,.06);text-align:center;transition:all .3s}
+.pill:hover{border-color:var(--a);transform:translateY(-2px)}
+.pill-i{font-size:2rem;margin-bottom:.6rem}.pill-t{font-family:var(--fd);font-size:1.1rem;color:#fff;margin-bottom:.35rem}
+.pill-d{font-size:.78rem;color:var(--t3);line-height:1.6}
+.pill-e{margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.06);font-size:.72rem;color:var(--t3)}.pill-e strong{color:var(--a2);font-weight:600;display:block;margin-bottom:.15rem}
+/* Stage */
+.sh{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-top:1rem}
+.sn{width:42px;height:42px;background:var(--a);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.15rem;flex-shrink:0}
+.st{font-family:var(--fd);font-size:1.5rem;color:#fff}.ss{font-size:.78rem;color:var(--t3)}.ss a{font-size:.78rem}
+/* Audit grid */
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.1rem 0}
+.ac{background:var(--s);border-radius:var(--rad);padding:1.4rem;border:1px solid rgba(255,255,255,.06)}
+.ac.dx{border-color:rgba(239,68,68,.15);background:rgba(239,68,68,.03)}.ac.dx .cl{color:var(--r)}
+.ac.fx{border-color:rgba(16,185,129,.15);background:rgba(16,185,129,.03)}.ac.fx .cl{color:var(--g)}
+.ac.yx{border-color:rgba(245,158,11,.15);background:rgba(245,158,11,.03)}.ac.yx .cl{color:var(--y)}
+.ac.bx{border-color:rgba(59,130,246,.15);background:rgba(59,130,246,.03)}.ac.bx .cl{color:var(--b)}
+.cl{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.65rem}
+.ac ul{list-style:none;padding:0}.ac li{padding:.4rem 0;padding-left:1.3rem;position:relative;font-size:.82rem;color:var(--t2);border-bottom:1px solid rgba(255,255,255,.025);line-height:1.65}.ac li:last-child{border-bottom:none}
+.ac.dx li::before{content:'✕';position:absolute;left:0;color:var(--r);font-weight:700;font-size:.72rem}
+.ac.fx li::before{content:'→';position:absolute;left:0;color:var(--g);font-weight:700}
+.ac.yx li::before{content:'!';position:absolute;left:0;color:var(--y);font-weight:700}
+.ac.bx li::before{content:'◆';position:absolute;left:0;color:var(--b);font-weight:700;font-size:.6rem;top:.55rem}
+/* Full width audit card */
+.ac.full{grid-column:1/-1}
+/* Target box */
+.tb{display:flex;align-items:center;gap:1.1rem;background:var(--s);border:1px solid rgba(255,255,255,.06);border-radius:var(--rad);padding:1rem 1.35rem;margin:.85rem 0;flex-wrap:wrap}
+.tb .cu,.tb .tg{text-align:center;min-width:70px}
+.tb .cu .v{font-family:var(--fd);font-size:1.2rem;color:var(--r)}.tb .tg .v{font-family:var(--fd);font-size:1.2rem;color:var(--g)}
+.tb .l{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.tb .aw{font-size:1.3rem;color:var(--t3)}.tb .im{flex:1;padding-left:1.1rem;border-left:1px solid rgba(255,255,255,.06);font-size:.8rem;color:var(--t2);min-width:180px}.tb .im strong{color:var(--g)}
+/* Before/After */
+.ba{display:grid;grid-template-columns:1fr 32px 1fr;gap:0;margin:1.5rem 0;align-items:stretch}
+.bac{background:var(--s);border-radius:var(--rad);padding:1.5rem;border:1px solid rgba(255,255,255,.06)}
+.bac.bf{border-color:rgba(239,68,68,.15)}.bac.af{border-color:rgba(16,185,129,.15)}
+.baaw{display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--t3)}
+.bal{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+.bac.bf .bal{color:var(--r)}.bac.af .bal{color:var(--g)}
+.bact{font-size:.8rem;color:var(--t2);line-height:1.7}.bact strong{color:var(--t)}
+.bah{font-family:var(--fd);font-size:.95rem;color:#fff;margin-bottom:.55rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.06)}
+/* Page structure */
+.pss{display:flex;gap:.75rem;margin:.5rem 0;align-items:flex-start}
+.psn{width:26px;height:26px;background:var(--a);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:.15rem}
+.pst{font-weight:700;color:#fff;margin-bottom:.15rem;font-size:.87rem}.psd{font-size:.78rem;color:var(--t3);line-height:1.6}
+/* Timeline */
+.tl{position:relative;margin:1.5rem 0;padding-left:1.5rem}
+.tl::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:rgba(139,92,246,.25)}
+.tli{position:relative;margin-bottom:1.1rem;padding-left:1.5rem}
+.tli::before{content:'';position:absolute;left:-1.5rem;top:.4rem;width:8px;height:8px;background:var(--a);border-radius:50%;border:2px solid var(--bg)}
+.tlt{font-family:var(--fm);font-size:.7rem;color:var(--a2);margin-bottom:.15rem}
+.tlh{font-weight:700;color:#fff;margin-bottom:.15rem;font-size:.87rem}.tld{font-size:.78rem;color:var(--t3);line-height:1.6}
+/* Expert */
+.eg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.5rem 0}
+.ec{background:var(--s);border-radius:var(--rad);padding:1.5rem;border:1px solid rgba(255,255,255,.06)}
+.ecn{font-family:var(--fd);font-size:.95rem;color:var(--a2);margin-bottom:.35rem}
+.ecf{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.6rem}
+.ecp{font-size:.78rem;color:var(--t2);line-height:1.7}
+/* VEQ */
+.veq{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.25rem 0}
+.veqc{background:var(--s);border-radius:var(--rad);padding:1.35rem;border:1px solid rgba(255,255,255,.06)}
+.veqc h4{margin-top:0}.veqi{font-size:.8rem;color:var(--t2);margin-bottom:.6rem;line-height:1.6}
+.veqi strong{display:block;color:var(--t);margin-bottom:.1rem}
+.score{display:inline-block;font-size:.65rem;font-weight:700;padding:.1rem .4rem;border-radius:3px}
+.score.bad{background:rgba(239,68,68,.12);color:var(--r)}.score.warn{background:rgba(245,158,11,.12);color:var(--y)}.score.good{background:rgba(16,185,129,.12);color:var(--g)}
+/* Priority */
+.pi{display:flex;gap:1rem;padding:1.1rem;background:var(--s);border-radius:var(--rad);border:1px solid rgba(255,255,255,.06);margin:.55rem 0;align-items:flex-start}
+.pi:hover{border-color:rgba(139,92,246,.25)}
+.pr{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:.95rem;color:#fff;flex-shrink:0}
+.pr.p1{background:var(--r)}.pr.p2{background:var(--y);color:#000}.pr.p3{background:var(--g)}.pr.p4{background:var(--b)}.pr.p5{background:var(--a)}.pr.p6{background:var(--t3)}
+.pb h4{color:#fff;margin-top:0;margin-bottom:.15rem;font-size:.88rem}.pb p{font-size:.78rem;color:var(--t2);margin-bottom:0}
+/* Scope */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.5rem 0}
+.sc{background:var(--s);border-radius:var(--rad);padding:1.5rem;border:1px solid rgba(255,255,255,.06)}
+.sc.cv{border-color:rgba(16,185,129,.15)}.sc.cv .scl{color:var(--g)}
+.sc.nx{border-color:rgba(245,158,11,.15)}.sc.nx .scl{color:var(--y)}
+.scl{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+.sc ul{list-style:none;padding:0}.sc li{padding:.25rem 0;font-size:.78rem;color:var(--t2);padding-left:1.1rem;position:relative}
+.sc.cv li::before{content:'✓';position:absolute;left:0;color:var(--g);font-weight:700}
+.sc.nx li::before{content:'○';position:absolute;left:0;color:var(--y)}
+/* Mockup */
+.mock{background:var(--s2);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;margin:1.75rem 0}
+.mock-top{background:var(--s);padding:.6rem 1rem;display:flex;align-items:center;gap:.4rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.08)}.mock-dot.r{background:#EF4444}.mock-dot.y{background:#F59E0B}.mock-dot.g{background:#10B981}
+.mock-url{font-family:var(--fm);font-size:.68rem;color:var(--t3);margin-left:.6rem}
+.mock-body{padding:2rem}
+.mock-hero{background:linear-gradient(135deg,#1a0a2e,#0d1117);border-radius:var(--rad);padding:2.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.mock-hero::after{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent);pointer-events:none}
+.mock-hero h2{font-family:var(--fd);font-size:1.4rem;color:#fff;margin-bottom:.6rem;line-height:1.3}
+.mock-hero p{font-size:.82rem;color:var(--t2);margin-bottom:1rem;max-width:480px}
+.mock-btn{display:inline-block;color:#fff;padding:.6rem 1.5rem;border-radius:7px;font-weight:600;font-size:.82rem}
+.mock-section{padding:1.25rem 0;border-top:1px solid rgba(255,255,255,.06)}.mock-section h4{color:#fff;font-size:.95rem;margin-bottom:.85rem;margin-top:0}
+.mock-cg{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.mock-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.1rem}
+.mock-card.primary{border-color:var(--a);background:rgba(139,92,246,.06)}
+.mock-card .price{font-family:var(--fd);font-size:1.6rem;color:#fff}.mock-card .was{text-decoration:line-through;color:var(--t3);font-size:.82rem;margin-right:.4rem}
+.mock-card .name{font-weight:600;color:#fff;margin-bottom:.4rem;font-size:.92rem}
+.mock-card .tag{display:inline-block;background:var(--a);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px;margin-bottom:.6rem}
+.mock-chk{font-size:.75rem;color:var(--t2);padding:.2rem 0;padding-left:1.1rem;position:relative}.mock-chk::before{content:'✓';position:absolute;left:0;color:var(--g);font-weight:700}
+.mock-guar{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:8px;padding:1rem;text-align:center;margin-top:1.25rem}
+.mock-guar p{font-size:.82rem;color:var(--t2);margin:0}.mock-guar strong{color:var(--g)}
+/* Ad table */
+.ad-tbl{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.78rem}
+.ad-tbl th{text-align:left;padding:.5rem .6rem;background:var(--s2);color:var(--t3);font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
+.ad-tbl td{padding:.45rem .6rem;border-bottom:1px solid rgba(255,255,255,.03);color:var(--t2)}.ad-tbl td:first-child{color:var(--t);font-weight:500;max-width:280px}
+.ad-tbl tr.scale{background:rgba(16,185,129,.04)}.ad-tbl tr.watch{background:rgba(245,158,11,.04)}.ad-tbl tr.kill{background:rgba(239,68,68,.03)}
+.tag-s{display:inline-block;font-size:.6rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;letter-spacing:.03em}
+.tag-s.scale{background:rgba(16,185,129,.15);color:var(--g)}.tag-s.watch{background:rgba(245,158,11,.15);color:var(--y)}.tag-s.kill{background:rgba(239,68,68,.15);color:var(--r)}.tag-s.new{background:rgba(59,130,246,.15);color:var(--b)}
+/* link box */
+.lnk{display:inline-flex;align-items:center;gap:.4rem;background:var(--s);border:1px solid rgba(139,92,246,.15);border-radius:7px;padding:.4rem .85rem;margin:.3rem .3rem .3rem 0;font-family:var(--fm);font-size:.72rem;color:var(--a2)}.lnk:hover{border-color:var(--a);color:#fff}
+/* Responsive */
+@media(max-width:768px){.pills,.ag,.eg,.sg,.ba,.mock-cg,.veq{grid-template-columns:1fr}.ba{gap:.6rem}.baaw{transform:rotate(90deg)}.nav-l{display:none}.hero h1{font-size:1.9rem}.tb{flex-direction:column;text-align:center}.tb .im{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.06);padding-top:.6rem}.ac.full{grid-column:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-b">Funnel Audit v3</div><div class="nav-l">
+<a href="#step0">Framework</a><a href="#step1">Ads</a><a href="#step2">Landing Page</a><a href="#step3">Thank You</a><a href="#step4">Emails</a><a href="#step5">Masterclass</a><a href="#step6">Dropdown</a><a href="#priorities">Priorities</a>
+</div></nav>
+
+<!-- HERO -->
+<header style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 2rem 3.5rem;position:relative;overflow:hidden">
+<div style="position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(139,92,246,.1),transparent 60%);pointer-events:none"></div>
+<div class="c">
+<div class="sl">Mindvalley Pathway Funnel Audit — Confidential</div>
+<h1 style="font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.12;color:#fff;margin-bottom:1.25rem;max-width:880px">Silva Ultramind System<br><span style="color:var(--a2)">Intuition Outcome — Complete Funnel Teardown</span></h1>
+<p style="font-size:1.05rem;color:var(--t2);max-width:660px;margin-bottom:2rem">A step-by-step audit of every stage from paid ad to post-masterclass sales page. Every data point. Every finding. Every recommendation. Nothing left out.</p>
+<div style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.82rem;color:var(--t3);margin-bottom:2.5rem"><span>📄 <strong style="color:var(--t)">Part 1 of 2</strong> — Ad to Dropdown</span><span>📅 <strong style="color:var(--t)">April 16, 2026</strong></span><span>🔒 <strong style="color:var(--t)">Office of the CGO</strong></span></div>
+
+<h4 style="margin-top:0">🔗 Live Funnel Pages</h4>
+<div style="display:flex;flex-wrap:wrap;gap:.4rem">
+<a href="https://www.mindvalley.com/ultramind/masterclass/manifesting-intuition" target="_blank" class="lnk">📄 Landing Page</a>
+<a href="https://www.mindvalley.com/ultramind/thank-you" target="_blank" class="lnk">✅ Thank You</a>
+<a href="https://www.mindvalley.com/ultramind/live/manifesting-live" target="_blank" class="lnk">🎬 Watch Page</a>
+<a href="https://www.mindvalley.com/ultramind/live/manifesting-live" target="_blank" class="lnk">💳 Sales Page (Dropdown)</a>
+</div>
+</div>
+</header>
+
+<main class="c">
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- THE CORE DIAGNOSIS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="diagnosis">
+<div class="sl">The Core Diagnosis</div>
+<h2>This funnel sells the vehicle, not the destination.</h2>
+
+<div class="vd red">
+<div class="vd-l">Root Cause Identified</div>
+<h3>The team is leading with the mechanism (intuition, altered states, brainwave science) instead of the dream outcome (wealth, better decisions, career performance).</h3>
+<p><strong>Nobody wakes up and says "Hey, I need to have better intuition."</strong> There's always a goal behind it. Intuition is just a mechanism — but what is the goal? Why would someone want higher intuition? Because they want to make money. Because they want to make the right decisions every time. Because they want to identify the right strategy and direction for their business.</p>
+<p>The dream outcome for this funnel should be: <strong>"How to make the right decisions all the time so you can build wealth faster."</strong> The mechanism is the Silva Ultramind Method. The proof is the science — but right now, the team is using proof AS the outcome, which is fundamentally wrong.</p>
+<p>Until this inversion is fixed at every stage — ads, landing page, emails, masterclass, sales page — no amount of creative testing or budget increase will move the needle.</p>
+</div>
+
+<h3>Funnel Performance — The Numbers</h3>
+<div class="mg">
+<div class="mc bad"><div class="lb">Ad Spend (Intuition)</div><div class="vl">$18.75K</div><div class="su">Highest spend, worst ROAS</div></div>
+<div class="mc bad"><div class="lb">Revenue (Fwd 30D)</div><div class="vl">$11.25K</div><div class="su">Net loss against spend</div></div>
+<div class="mc bad"><div class="lb">D30 ROAS</div><div class="vl">60%</div><div class="su">Flatlines from D7 — ceiling problem</div></div>
+<div class="mc bad"><div class="lb">Kill-Zone Ads</div><div class="vl">8 of 12</div><div class="su">Only 1 asset worth scaling</div></div>
+<div class="mc bad"><div class="lb">LP Signup Rate</div><div class="vl">3.42%</div><div class="su">Target: 15–25% for free MC</div></div>
+<div class="mc warn"><div class="lb">Watch Now vs Later</div><div class="vl">39.5% / 60.5%</div><div class="su">Majority defer = low commitment</div></div>
+<div class="mc warn"><div class="lb">Show-Up Rate</div><div class="vl">35.53%</div><div class="su">~65% of registrants never watch</div></div>
+<div class="mc bad"><div class="lb">Dropdown Conversion</div><div class="vl">~8.2%</div><div class="su">52 buyers from 631 who saw page</div></div>
+<div class="mc bad"><div class="lb">$399 Single Buyers</div><div class="vl">0</div><div class="su">Nobody bought the single program</div></div>
+<div class="mc bad"><div class="lb">6-Day Conv Window</div><div class="vl">6.11 days</div><div class="su">People aren't buying immediately</div></div>
+</div>
+
+<h3>Where the Funnel Leaks — Visual</h3>
+<div class="fv">
+<div class="fs"><div class="fl">Impressions</div><div class="fbw"><div class="fb" style="width:100%;background:linear-gradient(90deg,var(--a),var(--b))"><span class="n">1,992,671</span></div></div><div class="fr" style="color:var(--t3)">—</div></div>
+<div class="fs"><div class="fl">Sessions</div><div class="fbw"><div class="fb" style="width:30%;background:var(--a)"><span class="n">63,713</span></div></div><div class="fr warn">3.2% session rate</div></div>
+<div class="fs"><div class="fl">Signups</div><div class="fbw"><div class="fb" style="width:10%;background:var(--y)"><span class="n">2,181</span></div></div><div class="fr bad">3.42% signup</div></div>
+<div class="fs"><div class="fl">Show-ups</div><div class="fbw"><div class="fb" style="width:3.5%;background:var(--y)"><span class="n">~775</span></div></div><div class="fr warn">35.53% show</div></div>
+<div class="fs"><div class="fl">Saw Dropdown</div><div class="fbw"><div class="fb" style="width:2.8%;background:rgba(239,68,68,.6)"><span class="n">631</span></div></div><div class="fr" style="color:var(--t3)">81.4%</div></div>
+<div class="fs"><div class="fl">Buyers</div><div class="fbw"><div class="fb" style="width:.8%;min-width:55px;background:var(--r)"><span class="n">52</span></div></div><div class="fr bad">8.2% conv</div></div>
+</div>
+<p style="text-align:center;font-size:.78rem;color:var(--t3)">~2 million impressions → 52 buyers. Total revenue: $13,122 against $48,457 ad spend. <strong style="color:var(--r)">The funnel loses money at every level.</strong></p>
+
+<h3>Comparison: Intuition vs Other Outcomes</h3>
+<table class="ad-tbl">
+<thead><tr><th>Outcome</th><th>Spend</th><th>CPL</th><th>vs $18 Target</th><th>ROAS D7</th><th>ROAS D30</th><th>Decision</th></tr></thead>
+<tbody>
+<tr class="scale"><td><strong>Science</strong></td><td>$12.6K</td><td>$27.26</td><td>1.51x</td><td>29.4%</td><td>54.3%</td><td><span class="tag-s scale">Keep</span></td></tr>
+<tr class="scale"><td><strong>Career Advancement</strong></td><td>$3.9K</td><td>$30.95</td><td>1.72x</td><td>22.3%</td><td>185.3% ⚠️</td><td><span class="tag-s scale">Keep</span></td></tr>
+<tr class="kill"><td><strong>Creativity</strong></td><td>$12.0K</td><td>$39.22</td><td>2.18x</td><td>21.1%</td><td>21.1%</td><td><span class="tag-s kill">Cut</span></td></tr>
+<tr class="kill"><td><strong>Intuition</strong></td><td>$15.5K</td><td>$35.81</td><td>1.99x</td><td>17.8%</td><td>17.8%</td><td><span class="tag-s kill">Cut</span></td></tr>
+</tbody>
+</table>
+<p><strong>Career Advancement has 185.3% D30 ROAS</strong> — by far the best — because it's the closest thing to an actual outcome on this list. It implies money, status, and progress. "Science" wins CPL because it provides credibility. "Intuition" and "Creativity" are abstract mechanisms that don't sell.</p>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 0: THE FRAMEWORK -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step0">
+<div class="sl">Step 0 — The Framework</div>
+<h2>Before fixing anything: the team must understand this</h2>
+<p>This framework applies to <strong>every pathway, every outcome, every funnel</strong> going forward. It's the DNA of every direct-response funnel that converts.</p>
+
+<h3>Outcome → Mechanism → Proof</h3>
+<p>Every element of the funnel must clearly distinguish these three layers. The funnel <strong>leads with the Outcome</strong>, introduces the <strong>Mechanism as the surprising solution</strong>, and uses <strong>Proof to make the mechanism credible</strong>. Proof backs up the mechanism — it explains WHY this solution works. Case studies prove the outcome is achievable.</p>
+
+<div class="pills">
+<div class="pill"><div class="pill-i">🎯</div><div class="pill-t">Outcome</div><div class="pill-d">What the prospect's life looks like AFTER. Always emotional, always tangible. This is what they actually want.</div><div class="pill-e"><strong>For Silva / Wealth:</strong>Make million-dollar decisions with confidence • Build wealth through clarity • Make the right bet every time • Never second-guess a major choice</div></div>
+<div class="pill"><div class="pill-i">⚙️</div><div class="pill-t">Mechanism</div><div class="pill-d">HOW they get there. The method, system, technique. This is the bridge between their pain and the transformation.</div><div class="pill-e"><strong>For Silva:</strong>The Silva Ultramind Method — the technique used by high performers for 60 years, backed by neuroscience</div></div>
+<div class="pill"><div class="pill-i">🔬</div><div class="pill-t">Proof</div><div class="pill-d">WHY they should believe it works. Science proves the mechanism. Case studies prove the outcome is achievable for someone like them.</div><div class="pill-e"><strong>For Silva:</strong>60 yrs of research • Cancer survival doubled • Vishen $0→$100M • Bianca beat Serena • 382K students • Tony Gonzalez, CNN host</div></div>
+</div>
+
+<div class="vd yellow">
+<div class="vd-l">The Testing Error — This Is What The Team Gets Wrong</div>
+<h3>The team is testing mechanisms against each other and using proof as the outcome.</h3>
+<p><strong>"Science" is NOT an outcome</strong> — it's a proof layer that makes every funnel more credible. <strong>"Intuition" is NOT an outcome</strong> — it's a mechanism. <strong>"Creativity" is NOT an outcome</strong> — it's abstract and means nothing to a buyer. The only angle close to an outcome is <strong>"Career Advancement"</strong> — and it has the best D30 ROAS at 185.3%. This proves the point exactly.</p>
+<h4>Correct Testing Matrix</h4>
+<p>Test <strong>OUTCOMES</strong> against each other, not mechanisms. Then layer mechanisms and proof INTO each:</p>
+<p><strong>Outcome 1: Wealth / Business Growth</strong> — "How top entrepreneurs use mental training to make million-dollar decisions"<br>→ Mechanism: Intuition training via Silva Ultramind<br>→ Proof: Science (60 yrs research) + Vishen's $100M story + entrepreneur case studies</p>
+<p><strong>Outcome 2: Healing / Health</strong> — "The clinically studied technique that doubled cancer survival rates"<br>→ Mechanism: Alpha/Theta brain states via Silva Ultramind<br>→ Proof: Science (Dr. Simonton cancer study) + Vishen's skin healing + health case studies</p>
+<p><strong>Science should be included in EVERYTHING.</strong> It backs up the mechanism. It's the credibility layer that overcomes the #1 cold-traffic objection: "is this woo-woo?" But it's never the headline — the OUTCOME is always the headline.</p>
+</div>
+
+<h3>The Hormozi Value Equation — Applied to Show-Up Emails</h3>
+<div style="text-align:center;padding:1.25rem;background:var(--s);border-radius:var(--rad);border:1px solid rgba(139,92,246,.15);margin:1.25rem 0">
+<p style="font-family:var(--fd);font-size:1.1rem;color:var(--a2);margin:0">Value = (Dream Outcome × Perceived Likelihood) ÷ (Time Delay × Effort Required)</p>
+</div>
+<div class="veq">
+<div class="veqc"><h4>↑ Maximize the Top (Numerator)</h4>
+<div class="veqi"><strong>Dream Outcome</strong>Currently vague ("intuition"). Must be: wealth, better decisions, career performance. The headline should make the prospect think "that's exactly what I want." <span class="score bad">LOW → MUST FIX</span></div>
+<div class="veqi"><strong>Perceived Likelihood of Achievement</strong>Moderate. Vishen's $100M story helps. But ESP and psychic ability claims hurt credibility with cold analytical traffic. Need more entrepreneur-specific proof. <span class="score warn">MEDIUM</span></div>
+</div>
+<div class="veqc"><h4>↓ Minimize the Bottom (Denominator)</h4>
+<div class="veqi"><strong>Time Delay</strong>28 days to complete the program. 15–20 min/day. Clearly stated in the MC. This is achievable and specific. <span class="score good">GOOD</span></div>
+<div class="veqi"><strong>Effort Required</strong>15–20 minutes per day. Low barrier. "If you can sleep, you can go to Alpha." Vishen addresses this well in the MC. <span class="score good">GOOD</span></div>
+</div>
+</div>
+
+<div class="vd purple">
+<div class="vd-l">Critical: The Show-Up Emails Must Prove the Value Equation</div>
+<h3>By the time prospects reach the masterclass, they should already be warmed up on every element of the equation.</h3>
+<p>The show-up emails need to <strong>prove it's easy to do</strong> (anyone can meditate, 15 min/day), <strong>prove anyone can achieve this</strong> (diverse case studies — not just athletes), <strong>prove the perceived likelihood is high</strong> (science + real results), and make the <strong>dream outcome feel urgent and real</strong>. Can we bring them to the app and platform and give them warm-up material so they have something to do in the next 3 days to get excited? Can we give them pre-material that primes them for the class? YES — and that's the fix.</p>
+</div>
+
+<h3>Expert Frameworks Applied</h3>
+<div class="eg">
+<div class="ec"><div class="ecn">Alex Hormozi</div><div class="ecf">Fix the Offer</div>
+<div class="ecp"><strong>The Grand Slam Offer is missing.</strong> Right now the offer is "learn the Silva Method for $399 or get membership for $199." No clear dream outcome stated, no time frame, no likelihood of achievement, no effort/sacrifice reduction. Rewrite: "In 28 days, develop the mental edge that top CEOs use to make million-dollar decisions — or your money back." The guarantee is buried as a footnote — it should be front-and-center and aggressive. The pricing is inverted: $399 for one program when 24 programs cost $199. That's a "confused offer" — you're making the customer do math instead of making the decision obvious. Fix: $99 single, $199 annual. Stack value against $2,500 live seminar price clearly.</div></div>
+
+<div class="ec"><div class="ecn">Frank Kern</div><div class="ecf">Results in Advance</div>
+<div class="ecp"><strong>Give people a taste of the transformation before asking them to buy.</strong> Currently, the prospect sits idle between registration and masterclass — 12+ hours of nothing. The masterclass gives results-in-advance for healing (skin story + Three Scenes demo) and stress reduction (Alpha exercise) — but NOT for the entrepreneur avatar who wants better decisions. Fix: Add pre-material in show-up emails and thank you page (5-min Alpha meditation → app). Let them experience a micro-shift before the MC. The live Three Scenes exercise should be reframed for business decisions, not generic "see the pain, see the healing." Kern would also say the dropout page violates the "one call to action" rule — three pricing tiers force analysis, not action.</div></div>
+
+<div class="ec"><div class="ecn">Jason Fladlien</div><div class="ecf">Webinar Closes, Page Confirms</div>
+<div class="ecp"><strong>The webinar must do ALL the selling. The dropdown page is just the checkout.</strong> Currently, the 19-page dropdown is a second complete sales presentation — bio, curriculum, 24-program catalog, community showcase, AI demo. If you need 19 pages after a 90-minute webinar, your webinar isn't closing. Fladlien would restructure the last 20 min of the MC to systematically build the offer: stack each element with clear value, build the total, reveal price as a fraction, close with real urgency. Then the dropdown: offer recap, price, guarantee, buy button. Nothing else. He'd also flag that "no replay" claimed in emails but contradicted by the actual replay page destroys all credibility for future urgency. Use REAL scarcity: actual deadline, actual cart close, not fake urgency.</div></div>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 1: FACEBOOK & GOOGLE ADS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step1">
+<div class="sl">Step 1</div>
+<div class="sh"><div class="sn">1</div><div><div class="st">Facebook & Google Ads</div><div class="ss">12 assets tested • 8 in kill zone • Only branded search profitable</div></div></div>
+
+<div class="tb"><div class="cu"><div class="v">$35.81</div><div class="l">Current CPL</div></div><div class="aw">→</div><div class="tg"><div class="v">&lt;$15</div><div class="l">Target CPL</div></div><div class="im"><strong>If CPL is above $15, it's a landing page conversion problem.</strong> Fix the LP first (3.42% → 15%+), then CPL drops automatically because you're converting more of the traffic you're already paying for.</div></div>
+
+<h3>ROAS Tells the Story: Leads Come In But Don't Convert</h3>
+<p>Intuition has the best CTR (1.57%) of all four outcomes — meaning the ads generate curiosity. But D30 ROAS <strong>flatlines at 60% from D7 onwards</strong>. Leads register but they don't buy. The funnel has a ceiling problem: once people hit the landing page and masterclass, something breaks. Compare to Science (D30 86.5%, still recovering) and Career (D30 126.2%, already profitable with tiny budget).</p>
+
+<h3>Every Ad Creative — Full Breakdown</h3>
+<table class="ad-tbl">
+<thead><tr><th>Creative / Headline</th><th>Zone</th><th>Spend</th><th>Leads</th><th>CPL</th><th>CTR</th><th>D1</th><th>D7</th><th>D30</th></tr></thead>
+<tbody>
+<tr class="scale"><td><strong>Google Search on "Silva"</strong></td><td><span class="tag-s scale">Scale</span></td><td>$4.92K</td><td>147</td><td>$33.49</td><td>1.42%</td><td>132.5%</td><td>166.5%</td><td>—</td></tr>
+<tr class="watch"><td>"The Silva Projection Technique for Intuition" — Vishen meditating image</td><td><span class="tag-s watch">Watch</span></td><td>$7.04K</td><td>329</td><td>$21.41</td><td>1.25%</td><td>21.2%</td><td>43.4%</td><td>—</td></tr>
+<tr class="watch"><td>"1.2M Students. Intuition Unlocked." — social proof headline</td><td><span class="tag-s watch">Watch</span></td><td>$813</td><td>34</td><td>$23.92</td><td>1.11%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"What Tony Gonzalez Does Before Every Big Game"</td><td><span class="tag-s kill">Kill</span></td><td>$1.11K</td><td>17</td><td>$65.05</td><td>1.78%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"How High Performers Stay Calm When the Stakes Are High"</td><td><span class="tag-s kill">Kill</span></td><td>$756</td><td>20</td><td>$37.81</td><td>2.90%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"The 15-Minute Technique CEOs Use Before Big Decisions"</td><td><span class="tag-s kill">Kill</span></td><td>$661</td><td>20</td><td>$33.07</td><td>1.04%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"How Athletes and Entrepreneurs Access Clarity Under Pressure"</td><td><span class="tag-s kill">Kill</span></td><td>$526</td><td>9</td><td>$58.49</td><td>2.58%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"Intuition Isn't a Gift. It's a Skill."</td><td><span class="tag-s kill">Kill</span></td><td>$1.11K</td><td>17</td><td>$65.30</td><td>0.95%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>Video ad — meditation techniques summary</td><td><span class="tag-s kill">Kill</span></td><td>$772</td><td>22</td><td>$35.13</td><td>7.92%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"I Trusted My Gut. Everything Changed."</td><td><span class="tag-s kill">Kill</span></td><td>$472</td><td>17</td><td>$27.79</td><td>0.96%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr class="kill"><td>"Intuition Isn't Random. It's Trainable."</td><td><span class="tag-s kill">Kill</span></td><td>$392</td><td>6</td><td>$65.36</td><td>1.03%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+</tbody>
+</table>
+
+<h3>Key Patterns in the Data</h3>
+<div class="ag">
+<div class="ac bx"><div class="cl">◆ Pattern: Situation-Based Ads Outperform Mechanism-Based Ads</div><ul>
+<li>Top-row ads leading with SITUATIONS ("high stakes," "big decisions," "pressure") get 2.58–2.90% CTR — people resonate with the real-world scenario</li>
+<li>Bottom-row ads leading with INTUITION AS A CONCEPT ("Intuition Isn't a Gift," "Intuition Isn't Random") get 0.95–1.03% CTR and $65+ CPL</li>
+<li>The video ad got 7.92% CTR (!) — people click out of curiosity — but 0% ROAS. High CTR ≠ high intent</li>
+<li><strong>But even the better-angled ads produce 0% downstream revenue</strong> because the landing page doesn't continue the story the ad started</li>
+</ul></div>
+<div class="ac bx"><div class="cl">◆ Why Branded Search Is the Only Winner</div><ul>
+<li>Google Search on "Silva" has 132.5% D1 ROAS and 166.5% D7 — it's printing money</li>
+<li>These people are SEARCHING for Silva Method — they have pre-existing intent and brand awareness</li>
+<li>The funnel doesn't need to do heavy lifting for them — they already know what they want</li>
+<li><strong>This is not scalable.</strong> The audience is capped at people who already know about Silva</li>
+<li>Real growth must come from cold Facebook — and that's where it's falling apart</li>
+<li><strong>Branded search converting doesn't mean the funnel is good. It means the audience is good.</strong> The funnel's job is to take someone who has NEVER heard of Silva and walk them from pain → realization → method → register</li>
+</ul></div>
+</div>
+
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ What's Wrong</div><ul>
+<li>Ads lead with mechanism: "The Silva Projection Technique for Intuition," "Intuition Isn't a Gift, It's a Skill," "Intuition Isn't Random, It's Trainable"</li>
+<li>"1.2M Students. Intuition Unlocked." — pure social proof + mechanism label. No emotional hook. "Intuition Unlocked" means nothing. Unlocked for what? To do what?</li>
+<li>Even situation-based ads ("How High Performers Stay Calm When Stakes Are High") produce 0% ROAS because the landing page doesn't continue the story — someone clicks expecting clarity under pressure and gets a page about training intuition</li>
+<li>The scent trail from ad to landing page is completely broken</li>
+<li>Testing mechanisms vs. mechanisms (science vs. intuition vs. creativity) instead of outcomes vs. outcomes</li>
+</ul></div>
+<div class="ac fx"><div class="cl">✓ How to Fix</div><ul>
+<li><strong>Lead every ad with the outcome + mechanism clearly stated:</strong> "How Vishen Built a $100M Company by Training His Intuition Using the Silva Ultramind Method" — not "trusting his hunch" (what is a hunch? no mechanism), but clearly: trained his intuition + Silva Ultramind Method</li>
+<li>Target the entrepreneur/high-performer avatar explicitly — use THEIR language: decisions, bets, strategy, scaling, pressure, stakes</li>
+<li>Use science as a credibility subline, not a headline: "Backed by 60 years of neuroscience research" under an outcome-driven headline</li>
+<li>Ensure ad-to-page scent match: if ad says "stay calm when stakes are high," the LP headline MUST continue that exact thread. Consider dynamic headlines per ad group</li>
+<li>Test OUTCOMES (Wealth vs. Healing), not mechanisms. Layer science into everything as credibility</li>
+</ul></div>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 2: LANDING PAGE -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step2">
+<div class="sl">Step 2</div>
+<div class="sh"><div class="sn">2</div><div><div class="st">Landing Page</div><div class="ss"><a href="https://www.mindvalley.com/ultramind/masterclass/manifesting-intuition" target="_blank">View live page →</a></div></div></div>
+
+<div class="tb"><div class="cu"><div class="v">3.42%</div><div class="l">Current Signup</div></div><div class="aw">→</div><div class="tg"><div class="v">15–25%</div><div class="l">Target Signup</div></div><div class="im"><strong>This is the #1 lever in the entire funnel.</strong> Moving from 3.42% to even 10% TRIPLES lead volume without spending an extra dollar on ads. This single fix has the highest ROI of any change. If CPL is above $15, fixing this page is the answer.</div></div>
+
+<h3>Current Page Copy — Full Audit (10 Problems)</h3>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 1: The page doesn't know who it's talking to</div>
+<ul><li>There's no avatar definition driving the copy. Who is the person landing here? A burned-out entrepreneur? A woman in her 40s disconnected after years of people-pleasing? A high-performer who operates on logic? The page talks to everyone and therefore talks to no one. Every great LP makes the reader feel "this was written for me." This one doesn't.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 2: Headline opens a loop it never closes — PAS violated</div>
+<ul><li>"You've Ignored Your Gut. Then Watched It Be Right." → "Train Your Intuition to Be Razor-Sharp and Accurate." That's Problem → Solution with ZERO Agitation in between. Where's the section that says "and here's what that costs you — the job you didn't take, the relationship you stayed in too long, the opportunity you let pass because you couldn't trust yourself"? The page skips the entire pain-agitation phase.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 3: Subheadline is proof before desire</div>
+<ul><li>"The protocol Vishen used to double his close rate. The same technique Tony Gonzalez and Bianca Andrescu use to win." This is credibility and social proof — but it's too early. The prospect hasn't been sold on WHY they need this yet. You're name-dropping before establishing relevance. Proof amplifies desire — it cannot create it.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 4: "What You'll Learn" is a syllabus, not a promise</div>
+<ul>
+<li>Bullet 1: "Why Intuition Is a Trainable Skill — Not a Rare Gift" → mechanism</li>
+<li>Bullet 2: "The Brainwave State Where Intuition Awakens" → mechanism/science</li>
+<li>Bullet 3: "How Vishen Used Intuition to Transform His Career Overnight" → Vishen's story, not the prospect's future</li>
+<li>Bullet 4: "The 3 Scenes Technique: Your First Step Into Intuitive Living" → mechanism</li>
+<li>3 of 4 bullets are about the METHOD. A cold prospect reads "The Brainwave State Where Intuition Awakens" and thinks "this sounds like a science lecture" or "this is woo-woo."</li>
+</ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 5: Vishen's story positioned as biography, not the prospect's future</div>
+<ul><li>The section about Vishen doubling his sales is compelling — but it's framed as HIS story, not YOURS. "You'll learn the exact technique Vishen used when he was broke, failing at sales, and desperate" would connect it to the prospect's transformation. The bridge from his story to their future is completely missing.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 6: Learning journey has zero emotional pull</div>
+<ul><li>"Understand How Intuition Actually Works" → "Activate Your Intuition" → "Start Noticing the Signals." This reads like a course syllabus. Compare to: "Walk away knowing exactly why you've been stuck" → "Experience a live shift in decision-making clarity" → "Leave with a practice that starts working within 48 hours." Same content, completely different energy.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 7: FAQs address wrong objections</div>
+<ul><li>FAQs cover "Do I need meditation experience?" and "Is this free?" Those aren't the real objections. Cold traffic objections for intuition: "Is this scientifically backed or pseudoscience?" "Will this work for an analytical, logic-driven person?" "I've never been intuitive — can this change?" "How is this different from just meditating?" None addressed.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 8: Social proof is volume, not transformation</div>
+<ul><li>"15,000+ participants" and "1.2 million students" and "rated 4.94" — popular, but not proof that it WORKS. Where's "I used this to finally trust my gut on a deal and saved $200K" or "I stopped overthinking every decision"? People don't buy because something is popular — they buy because someone like them got a result they want.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 9: No urgency or stakes</div>
+<ul><li>"Playing for a limited time only" is the only urgency. No cost-of-inaction framing. What happens if you DON'T develop this? You keep making decisions from fear. You keep ignoring signals. The page never makes the prospect feel the cost of staying where they are.</li></ul>
+</div>
+
+<div class="ac dx" style="margin:1rem 0">
+<div class="cl">❌ Problem 10: Fatal scent break from ads</div>
+<ul><li>Someone clicks "How High Performers Stay Calm When Stakes Are High" and lands on a page about training intuition, brainwave states, and the Silva Method. The ad promised clarity under pressure. The page delivers a masterclass registration about intuition. That disconnect alone kills the 3.42% conversion rate.</li></ul>
+</div>
+
+<h3>What The Page Should Be — Marisha's Direction</h3>
+<div class="vd green">
+<div class="vd-l">The Correct Approach</div>
+<h3>This page should be designed for high-performing entrepreneurs who want to work on their intuition to make money.</h3>
+<p>The headline should be something like: <strong>"How Vishen Built a $100M Company by Training His Intuition Using the Silva Ultramind Method — And How We're Going to Teach It to You in This Free Masterclass."</strong></p>
+<p>Talk about what CEOs get wrong: they think hard work alone will get you to your financial goals, but a sharp intuition can be the biggest lever to help you identify the right strategy and direction. As an entrepreneur, you make billions of decisions every month — being able to make the right ones every time gets you there faster. THAT'S the dream narrative.</p>
+<p>The proof should be: "This is used by X number of entrepreneurs worldwide." The mechanism: introduce the Silva Method because it's a cohesive, famous method. Don't go granular about the 3 Scenes Technique. Testimonials: NOT "my headache went away" — case studies of people who used Silva to grow business or gain wealth.</p>
+</div>
+
+<h4>Recommended Page Structure</h4>
+<div class="pss"><div class="psn">1</div><div><div class="pst">Hero — Dream Outcome</div><div class="psd">"How Vishen Built a $100M Company by Training His Intuition Using the Silva Ultramind Method — And How We're Going to Teach It to You in This Free Masterclass." Dark background, Vishen image right, headline left. High-contrast CTA. Video trailer muted autoplay.</div></div></div>
+<div class="pss"><div class="psn">2</div><div><div class="pst">Agitation — Speak to the Pain</div><div class="psd">This section is MISSING from the current page. "You're making hundreds of decisions a month and the cost of getting them wrong is mounting. You think hard work alone gets you to your goals, but the smartest entrepreneurs have an edge you don't — and it's not what you think." Build the tension. Make them feel the problem.</div></div></div>
+<div class="pss"><div class="psn">3</div><div><div class="pst">Mechanism Reveal — Introduce Silva Ultramind</div><div class="psd">The technique used by high performers for 60 years, backed by neuroscience research. Introduce it as a cohesive, famous method — don't go granular about 3 Scenes Technique or brainwave states. The masterclass does that. Just establish: this is real, this is proven, this is the bridge.</div></div></div>
+<div class="pss"><div class="psn">4</div><div><div class="pst">Proof for the Mechanism — Science</div><div class="psd">This is WHERE the science comes in. It proves WHY the mechanism works: 60 years of research, studied by universities, cancer survival doubled, Harvard study on speaking to your body. Science backs up the mechanism — it's not the headline, it's the credibility layer.</div></div></div>
+<div class="pss"><div class="psn">5</div><div><div class="pst">Case Studies as Proof — Proving the Outcome</div><div class="psd">2–3 case studies about business/wealth outcomes specifically. Vishen's $100M company story. An entrepreneur who used Silva to scale. NOT "my headache went away." The case studies prove that the outcome (wealth, better decisions) is achievable for someone like the prospect.</div></div></div>
+<div class="pss"><div class="psn">6</div><div><div class="pst">What You'll Walk Away With — 4 Meaty Things</div><div class="psd">Not a syllabus. OUTCOMES: How to train your intuition to make the best bets in your career. The exact technique Vishen used to build a $100M company. A daily practice you can start tomorrow. How top performers use altered states for an unfair advantage. Each bullet should make the reader think "I NEED that."</div></div></div>
+<div class="pss"><div class="psn">7</div><div><div class="pst">About Vishen — He IS the Proof of Concept</div><div class="psd">Sell the speaker HARD. Not just bio — WHY he's the person to teach this. He built a $100M company with no VC, he's a certified Silva instructor, he's lived the transformation himself. Make the reader feel like they're getting access to someone operating at a level they aspire to.</div></div></div>
+<div class="pss"><div class="psn">8</div><div><div class="pst">Sign Up</div><div class="psd">Clean form. Name + email. "Reserve My Free Spot." Sticky or repeated 3x. Mobile: form visible within first 2 scrolls. End of story.</div></div></div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 3: THANK YOU PAGE -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step3">
+<div class="sl">Step 3</div>
+<div class="sh"><div class="sn">3</div><div><div class="st">Thank You / Registration Page</div><div class="ss">ONE job: maximize show-up rate. Currently a generic confirmation page.</div></div></div>
+
+<div class="tb"><div class="cu"><div class="v">35.53%</div><div class="l">Current Show-Up</div></div><div class="aw">→</div><div class="tg"><div class="v">55%+</div><div class="l">Target Show-Up</div></div><div class="im">Every +10% show-up rate = ~218 more people watching the masterclass and hitting the sales page — without any additional ad spend.</div></div>
+
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ What's Wrong — Full Audit</div><ul>
+<li><strong>Generic headline:</strong> "You're Registered For Your Mindvalley Masterclass!" — purely transactional. Zero anticipation. Tells you what happened, not what's coming</li>
+<li><strong>Video is generic orientation:</strong> Not a pre-frame that opens curiosity loops about the actual MC content</li>
+<li><strong>Calendar says "90 minutes":</strong> Too intimidating for busy entrepreneurs. And the description uses the internal product name "Mastering Altered States for Problem Solving & Performance" — not the dream outcome. Nobody is excited to block 90 minutes for "mastering altered states"</li>
+<li><strong>Membership upsell ($49/mo) appears:</strong> Before prospect has received ANY value from the masterclass. Premature and trust-damaging. Signals "the free MC is really just a sales funnel"</li>
+<li><strong>"Share this Masterclass with your friends":</strong> Generic "spread the knowledge" — no emotional reason to share, no incentive</li>
+<li><strong>"Tell us what you think" section:</strong> Has no form underneath it. Dead UI. Why does it even exist?</li>
+<li><strong>No pre-frame video:</strong> No short Vishen teaser that opens loops only the MC can close</li>
+<li><strong>No case studies:</strong> No proof from past attendees that showing up is worth it</li>
+<li><strong>No "what to expect" breakdown:</strong> No curiosity-building for what's in the MC</li>
+<li><strong>No pre-material or warm-up:</strong> Prospect sits idle for 12+ hours between registration and MC</li>
+</ul></div>
+
+<div class="ac fx"><div class="cl">✓ How to Fix — The Complete Rebuild</div><ul>
+<li><strong>Confirmation headline tied to outcome:</strong> "You're in — In 60 minutes, Vishen will show you the technique he used to build a $100M company"</li>
+<li><strong>Pre-frame video (60–90 seconds):</strong> Vishen teases 2–3 things from the MC. Opens curiosity loops that can only be closed by attending live</li>
+<li><strong>Calendar add with DAILY reminders:</strong> Says "60 minutes" (NOT 90). Description reinforces the dream outcome, not the internal product name. Set reminders to fire every day until the event</li>
+<li><strong>Pre-material warm-up (CRITICAL):</strong> "To get the most out of the masterclass, do this 5-minute Alpha exercise before the class. In order to clear your energy or sharpen your intuition for the session, spend 5 minutes on this." Links to the Mindvalley app → creates Mindvalley account → platform stickiness + micro-transformation</li>
+<li><strong>Case study wall:</strong> 10–15 raw comment screenshots from past MC attendees. NOT polished testimonial cards — raw screenshots feel authentic. Focus on business/wealth outcomes. "I almost didn't show up and it changed everything"</li>
+<li><strong>"What to expect":</strong> Only if DIFFERENT from landing page. If it's repetitive, skip and use the space for more case studies. Don't repeat — add new value</li>
+<li><strong>Share CTA with emotional hook:</strong> "Know an entrepreneur stuck at a crossroads? Send them this — it could change everything" — not generic "spread the knowledge"</li>
+<li><strong>REMOVE:</strong> Membership upsell, dead "tell us what you think" section, generic orientation video</li>
+</ul></div>
+</div>
+
+<div class="vd purple">
+<div class="vd-l">Key Insight: Pre-Material Is the Game-Changer</div>
+<h3>This is what separates a 35% show-up rate from a 55%+ one.</h3>
+<p>If you give them a short Silva meditation or a "do this before the class" exercise, you're doing TWO things at once: (1) getting them to experience a micro-transformation before the MC even starts (so they arrive already believing), and (2) getting them into the Mindvalley app which creates platform stickiness and makes the eventual upsell feel natural. If someone does a 5-minute Alpha meditation before the MC and FEELS something, they're showing up with completely different energy. They've already invested. The MC becomes the second hit, not the first.</p>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 4: SHOW-UP EMAILS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step4">
+<div class="sl">Step 4</div>
+<div class="sh"><div class="sn">4</div><div><div class="st">Show-Up Email Sequence</div><div class="ss">6 emails: 12hr → 6hr → 3hr → 1hr → 15min → Post-MC. Cadence solid. Copy broken.</div></div></div>
+
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ What's Wrong — Full Audit</div><ul>
+<li><strong>Every email leads with "manifesting" and "states of consciousness"</strong> — mechanism-first language that the entrepreneur avatar tunes out. Subject lines: "Enter the 3 States Where Manifesting Works," "Enter the Right State," "Learn The Right State of Manifestation," "Manifest from the Right State" — all variations of the same mechanism message</li>
+<li><strong>All 5 pre-event emails repeat the same pitch:</strong> "This is not a motivational talk. And it's not a theory. This is a live experience." By email 3, it's background noise. Each email essentially says the same thing differently</li>
+<li><strong>3-hour email gives minute-by-minute agenda:</strong> "0–7 mins Welcome, 7–12 mins The Real Problem, 12–17 mins The Paradigm Shift..." This kills curiosity. If I know the structure, I feel like I know what's coming</li>
+<li><strong>"No replay" contradiction:</strong> Emails say "There will be no replays available, just show up" — but the funnel HAS a replay page with the full recording. If even a small % of registrants discover this, it destroys trust in ALL future urgency claims</li>
+<li><strong>Testimonials don't match the avatar:</strong> "Thanks to this program I am performing at my peak" from Steve Harriman, "I have found my life purpose" from Melissa — generic personal development, not business/wealth outcomes</li>
+<li><strong>No Results in Advance:</strong> No pre-material, no micro-exercise, no warm-up. Prospect sits idle for 12+ hours between registration and MC</li>
+<li><strong>Post-MC sales email is too long:</strong> 7 bullet points re-explaining the program methodology. Someone who just watched 90 minutes doesn't need another explanation — they need a short bridge: "You felt the shift. Make it permanent. Click here."</li>
+<li><strong>No personalization by outcome:</strong> These are generic Silva emails. But the prospect came through the INTUITION outcome funnel. The emails should reference intuition, decision-making, the specific transformation promised</li>
+</ul></div>
+
+<div class="ac fx"><div class="cl">✓ How to Fix — Each Email Gets a DIFFERENT Job</div><ul>
+<li><strong>12hr — Build Anticipation + Pre-Material (Results in Advance):</strong> Share one powerful story they haven't heard (NOT from the landing page). Open a loop: "Vishen will share what happened the week he almost turned down a $40K raise — and why that decision led to $100M." Include pre-material CTA: "Do this 5-minute exercise before the class to sharpen your intuition for the session." Prove VALUE EQUATION element: this is easy, low effort required</li>
+<li><strong>6hr — Handle Objections + Prove Likelihood:</strong> One short case study from someone like them (entrepreneur, analytical, skeptic). Address "is this woo-woo?" head-on with science proof. Prove VALUE EQUATION: perceived likelihood of achievement is high — people like you got real results</li>
+<li><strong>3hr — Create FOMO + Prove Outcome:</strong> "2,000+ people have confirmed for today's session. The live exercise Vishen runs cannot be replicated." Share 2–3 past-attendee comments. Prove VALUE EQUATION: the dream outcome is real and massive</li>
+<li><strong>1hr — Logistical + Emotional Prep:</strong> Short. "Close other tabs. Find a quiet space. The next 60 minutes could change how you make every major decision." Link to join. Nothing else</li>
+<li><strong>15min / Live — Pure Urgency:</strong> "We're live. 1,400 people are already inside. Click to join." That's it. No re-selling</li>
+<li><strong>Post-MC — Short Bridge to Sale:</strong> "You just experienced the shift. Here's how to make it permanent. Enrollment is open for 48 hours." Direct link to dropdown. 3–4 SENTENCES — not a mini sales page</li>
+</ul></div>
+</div>
+
+<h4>Email Timeline: Each Email Proves a Different Part of the Value Equation</h4>
+<div class="tl">
+<div class="tli"><div class="tlt">T-12 hours</div><div class="tlh">Anticipation + Effort ↓ (Value Eq: Effort Required = LOW)</div><div class="tld">"This takes 15 min/day. Here's a 5-min taste right now." → proves low effort + gives Results in Advance via pre-material. Gets them to the app.</div></div>
+<div class="tli"><div class="tlt">T-6 hours</div><div class="tlh">Objection Handling + Likelihood ↑ (Value Eq: Perceived Likelihood = HIGH)</div><div class="tld">Entrepreneur case study + science backing → "people like me achieved this + it's backed by 60 years of research." Handles the skeptic objection directly.</div></div>
+<div class="tli"><div class="tlt">T-3 hours</div><div class="tlh">FOMO + Outcome ↑ (Value Eq: Dream Outcome = MASSIVE)</div><div class="tld">"2,000+ confirmed. Past attendees say: [outcome quotes]." → the transformation is real, people are achieving it, and the live experience is unrepeatable.</div></div>
+<div class="tli"><div class="tlt">T-1 hour</div><div class="tlh">Prepare & Prime</div><div class="tld">"Close tabs. Quiet space. 60 minutes." Short, logistical, emotionally charged. One link to join.</div></div>
+<div class="tli"><div class="tlt">T-15 min / LIVE</div><div class="tlh">Final Push</div><div class="tld">"We're live. 1,400 inside." Nothing else. Pure action trigger.</div></div>
+<div class="tli"><div class="tlt">Post-Masterclass</div><div class="tlh">Bridge → Sale (Hot Lead)</div><div class="tld">"You felt the shift. Make it permanent. Enrollment open 48 hours." 3–4 sentences. Direct dropdown link. Do NOT re-explain methodology.</div></div>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 5: MASTERCLASS & WATCH PAGE -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step5">
+<div class="sl">Step 5</div>
+<div class="sh"><div class="sn">5</div><div><div class="st">Masterclass & Watch Page</div><div class="ss"><a href="https://www.mindvalley.com/ultramind/live/manifesting-live" target="_blank">View live watch page →</a></div></div></div>
+
+<h3>Masterclass Content — Full Transcript Analysis</h3>
+<p>The full 90-minute masterclass transcript was analyzed. Vishen is an excellent presenter with compelling stories and strong proof. However, the masterclass is a <strong>general Silva Method pitch</strong>, not an "Intuition for Entrepreneurs" masterclass.</p>
+
+<div class="ac bx" style="margin:1rem 0">
+<div class="cl">◆ Content Breakdown by Time</div>
+<ul>
+<li><strong>~10 minutes: Vishen's entrepreneurial story</strong> — Broke in Silicon Valley, sleeping on friend's couch, rediscovers Silva, uses Theta-level intuition to pick names in the Yellow Pages, doubles sales in one week, gets promoted 3 times to VP of Sales, becomes #1 out of 100 salespeople, quits right before FBI raids the company, starts Mindvalley, scales to $100M with no VC. <strong>THIS IS THE MOST POWERFUL CONTENT FOR THE ENTREPRENEUR AVATAR.</strong> It gets roughly 10 minutes out of 90</li>
+<li><strong>~25 minutes: Healing stories</strong> — Vishen's teenage acne (5 years healed in 5 weeks using 3 Scenes), Miss Sweden Camilla Hansen healing her skin, Dr. O. Carl Simonton cancer study (159 patients with incurable cancer, survival from 12 to 24.4 months), Harvard study on speaking to body, nurse Sister Barbara Burns reversing blindness, a child who couldn't poop for 8 days</li>
+<li><strong>~20 minutes: ESP / psychic ability</strong> — Jose Silva's daughter Isabella answering questions before they were asked, Helen Hadzel "White Witch of Texas" winning $250K+ in prizes, Bert Goldman becoming an artist at 80 through psychic ability, Jamie Gregory winning £35M lottery, caseworking (detecting stranger's health conditions remotely), remote viewing exercises</li>
+<li><strong>~15 minutes: Three Scenes Technique + live exercise</strong> — Explanation of alpha/theta/delta states, mental screen visualization, 3 Scenes (see pain → see action → see result), live guided exercise. The exercise is framed GENERICALLY: "Pick something — lack of money, bad car, back pain, loneliness." Not framed for business decisions</li>
+<li><strong>~20 minutes: Pitch + Q&A</strong> — Program overview, $399 single or $299/yr subscription, bonuses (Three Most Important Questions, 6 Phase Meditation, AI coach), 15-day guarantee, 24 programs in manifesting collection, QR code, closing</li>
+</ul>
+</div>
+
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ The Content Mismatch Problem</div><ul>
+<li>Someone who clicked "How High Performers Stay Calm When Stakes Are High" and registered for an intuition masterclass sits through stories about skin healing, a child's constipation, lottery dreams, and the Virgin Mary appearing with lottery numbers</li>
+<li>Vishen's Yellow Pages → $100M story is INCREDIBLE — it's exactly the proof the entrepreneur avatar needs — but it gets ~10 minutes out of 90</li>
+<li>The live Three Scenes exercise is framed generically ("pick something: money, car, health, love") instead of specifically for business decisions ("visualize the decision you're facing right now and see the right path forward")</li>
+<li>This mismatch is WHY ROAS flatlines at 60% from D7 onwards — people register (the ad works), they show up (somewhat), but they don't convert because the MC didn't deliver on the promise the ad made</li>
+</ul></div>
+<div class="ac yx"><div class="cl">! Strategic Choice Required</div><ul>
+<li><strong>Option A — Reposition the funnel to match the MC as-is:</strong> Stop positioning this as "intuition for entrepreneurs." Instead, position it as what it actually is: a masterclass on unlocking your mind's hidden abilities through the Silva Method. Broaden the avatar. Lead with the most universal pain points. FASTER fix but limits premium positioning</li>
+<li><strong>Option B — Create an outcome-specific MC version:</strong> If the Intuition outcome targets entrepreneurs who want better decisions and wealth, the MC itself needs restructuring. Vishen's Yellow Pages → $100M story becomes the backbone. Three Scenes gets framed as a decision-making tool. Healing/ESP content gets minimized or positioned as "bonus abilities." MORE WORK but dramatically improves conversion for the wealth avatar</li>
+<li><strong>The current setup is a hybrid that serves neither.</strong> The funnel promises one thing, the MC delivers another, and the prospect feels bait-and-switched</li>
+</ul></div>
+</div>
+
+<h3>Watch Page — Full Audit</h3>
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ What's Wrong</div><ul>
+<li><strong>Headline is the internal product name:</strong> "Mastering altered states for problem solving & performance" — has nothing to do with the dream outcome. Should be the dream outcome: "In 60 minutes you will learn how to [outcome]"</li>
+<li><strong>20+ timestamps give away entire structure:</strong> [00:00:12] Introduction, [00:01:18] The 3 hidden states, [00:02:34] Alpha Theta Delta explained, [00:05:54] The 3 pillars, [00:07:20] Napoleon Hill... and on and on. This enables skip-to-technique behavior. Prospect jumps to the meditation exercise at 1:03:55, does it, feels good, and closes the tab without ever hearing the pitch at 1:23:43</li>
+<li><strong>The timestamps should tell you the WHOLE POINT so you're excited to WAIT for the technique:</strong> not minute-by-minute updates. Should be curiosity-driven: "How Silva students are building $100M companies," "The technique that billionaires use to..." — making you WANT to watch through to get to it</li>
+<li><strong>Forward scrubbing enabled:</strong> People can drag the playhead to the meditation, do the exercise, and leave without the pitch. The masterclass is structured story → proof → technique → offer. Letting people skip breaks the entire model</li>
+<li><strong>No testimonials below video:</strong> No reinforcement while they're deciding whether to commit 90 minutes</li>
+<li><strong>No CTA after video:</strong> Page just ends with Vishen's bio. Someone finishes the MC feeling inspired and the page gives them nowhere to go. Should be a prominent "Ready to go deeper? Join Silva Ultramind" button</li>
+<li><strong>No urgency:</strong> No "replay expires in 48 hours" or any reason to watch now vs. later</li>
+</ul></div>
+<div class="ac fx"><div class="cl">✓ How to Fix</div><ul>
+<li><strong>Rewrite headline to dream outcome:</strong> "In the next 60 minutes: the technique Vishen used to build a $100M company — and you'll practice it live"</li>
+<li><strong>Reduce to 3–4 curiosity-driven chapter markers:</strong> "The decision-making edge behind a $100M company" / "Why one man's sales doubled in a single week" / "The live exercise you'll practice today." These make you want to watch THROUGH, not jump past</li>
+<li><strong>Disable forward scrubbing:</strong> Force sequential consumption. The emotional journey requires watching in order. People should NOT be able to skip to the meditation and leave</li>
+<li><strong>Add case study block below video:</strong> Comments from past viewers like "I almost skipped this and I'm so glad I didn't" — reduces drop-off</li>
+<li><strong>Add clear CTA after video completion:</strong> A button/section that appears only after the video ends: "Ready to go deeper? Join Silva Ultramind System." Direct link to dropdown</li>
+<li><strong>Add urgency:</strong> "This replay is available for 48 hours" (if true — must be real scarcity)</li>
+</ul></div>
+</div>
+
+<h4>Watch Page: Before → After</h4>
+<div class="ba">
+<div class="bac bf"><div class="bal">❌ Current</div><div class="bah">Mastering altered states for problem solving & performance</div><div class="bact"><strong>20+ timestamps:</strong> [00:00:12] Introduction… [00:01:18] The 3 hidden states… [00:02:34] Alpha Theta Delta explained… [00:05:54] The 3 pillars… [00:07:20] Napoleon Hill… [00:09:54] Vishen's story… [00:12:33] NFL Hall of Famer… [00:16:34] Miss Sweden skin… [00:19:55] Green cream Iron Man… [00:23:01] Cancer study… and 10+ more<br><br>Forward scrub enabled. No CTA after video. No social proof. Vishen bio at bottom. Internal product name as headline.</div></div>
+<div class="baaw">→</div>
+<div class="bac af"><div class="bal">✓ Recommended</div><div class="bah">In the next 60 minutes: the technique behind Vishen's $100M company</div><div class="bact"><strong>3–4 curiosity markers (no timestamps):</strong><br>🔹 How Silva students are making million-dollar decisions<br>🔹 The week Vishen's sales doubled — and what he did differently<br>🔹 The live technique you'll walk away with today<br><br>No forward scrub. Case studies below video. CTA appears after video completes: "Ready to master this? Join Silva Ultramind →"</div></div>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- STEP 6: SALES PAGE (DROPDOWN) -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="step6">
+<div class="sl">Step 6</div>
+<div class="sh"><div class="sn">6</div><div><div class="st">Sales Page (Dropdown)</div><div class="ss">Currently 19 pages. Should be 2–3 screens. <a href="https://www.mindvalley.com/ultramind/live/manifesting-live" target="_blank">View live →</a></div></div></div>
+
+<div class="tb"><div class="cu"><div class="v">~8.2%</div><div class="l">Current Conv</div></div><div class="aw">→</div><div class="tg"><div class="v">15–20%</div><div class="l">Target Conv</div></div><div class="im">Doubling to 16% = ~50 more buyers per cycle = <strong>~$10K+ additional revenue</strong> with zero additional ad spend.</div></div>
+
+<h3>Current Page — What's On It (19 Pages)</h3>
+<div class="ac bx" style="margin:1rem 0"><div class="cl">◆ Full Contents Inventory</div><ul>
+<li><strong>Page 1:</strong> Same "Mastering altered states" headline + video player + yellow "$100 discount" banner + "Shift into higher states for focus, flow, and intuition" + pricing card (Monthly/Yearly toggle, Manifesting Collection $199/yr)</li>
+<li><strong>Page 2:</strong> Trustpilot embed (4.3 stars, 9,741 reviews) with 6 individual review cards + "About this program" section (382,835 students, 11.5 training hours, 4.9/5 rating)</li>
+<li><strong>Page 3:</strong> "Meet your trainer" full Vishen bio + instructor credentials (5 bullets) + "As seen on" logos (NYT, Forbes, USA Today, Google) + "What you'll learn" (7 items)</li>
+<li><strong>Page 4:</strong> Stats graphic (87% success rate, 74% reported guidance, 86% improvements) + growth area tags + "Program curriculum" with 4-part expandable breakdown</li>
+<li><strong>Page 5:</strong> Curriculum detail (Part 1-4 lesson breakdowns) + "Limited-time bonuses" (3 bonuses: Digital Vishen $99, 6 Phase Meditation, 3 Most Important Questions)</li>
+<li><strong>Page 6:</strong> "Silva success stories" — 9 testimonial cards with photos, names, locations</li>
+<li><strong>Page 7:</strong> 3 more testimonial cards + "Try Mindvalley Manifesting collection for 15 days risk free" guarantee box + SECOND pricing block ($399 single vs $199/yr collection with feature comparison)</li>
+<li><strong>Page 8:</strong> "Introducing Mindvalley Manifesting Collection" marketing copy + platform screenshots + "Over 214 hours of world class programs"</li>
+<li><strong>Pages 9-13:</strong> Full catalog of 24 individual programs with descriptions and individual prices (Sadhguru $199, Ultra Presence $149, Success Magic $99, Breathwork $199, Speaking With Spirit $199, Monroe Institute $199, Higher Self Activation, etc.)</li>
+<li><strong>Page 14:</strong> AI assistant "Eve" showcase (3 screenshots) + "A Community That Grows With You" + community screenshots + "Mindvalley featured in 200,000 Apple stores"</li>
+<li><strong>Pages 15-16:</strong> "Real Results From Real People" — 6 more testimonial cards (Miki Agrawal, Bianca Ioana world karate champion, Tony Gonzalez NFL, Camilla Hansson Miss Sweden, Jason Gagnon, Heldy De La Rosa)</li>
+<li><strong>Page 17:</strong> THIRD pricing block (identical to page 7) + FAQs (4 questions)</li>
+<li><strong>Total: 3 separate pricing blocks, 15+ testimonial cards across 3 sections, 24-program full catalog, Trustpilot embed, community showcase, Apple Store section, AI assistant demo</strong></li>
+</ul></div>
+
+<h3>Conversion Data from Dropdown</h3>
+<table class="ad-tbl">
+<thead><tr><th>Option</th><th>Customers</th><th>Revenue</th><th>AOV</th><th>Conv Rate</th><th>Conv Window</th><th>Upsell Rate</th></tr></thead>
+<tbody>
+<tr><td><strong>Annual Membership</strong></td><td>46</td><td>$12,428</td><td>$270.18</td><td>2.11%</td><td>6.11 days</td><td>13.04% → 6 upsells, $694</td></tr>
+<tr><td><strong>Monthly Membership</strong></td><td>6</td><td>$225</td><td>$37.50</td><td>0.28%</td><td>5 days</td><td>0%</td></tr>
+<tr class="kill"><td><strong>Single Quest ($399)</strong></td><td>0</td><td>$0</td><td>—</td><td>0%</td><td>0</td><td>—</td></tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> The 6.11-day conversion window for annual means people are NOT buying immediately after the MC. They're thinking about it. This confirms the dropdown page isn't creating urgency — people leave and some come back days later, but most don't.</p>
+
+<div class="ag">
+<div class="ac dx"><div class="cl">❌ What's Wrong</div><ul>
+<li><strong>19 pages after a 90-minute webinar is insane.</strong> Based on Fladlien and Jeff Walker, the page should NOT be this long. People open it, see "oh shit, so much to read," and don't buy. They keep the page open, go do other things, and forget to come back</li>
+<li><strong>It re-sells the entire program from scratch:</strong> Full trainer bio (they just spent 90 min with Vishen), methodology explanation (they just learned it), curriculum (they experienced it), 24-program catalog (overwhelming and irrelevant to the purchase decision)</li>
+<li><strong>Pricing is inverted and confusing:</strong> $399 for one program, $199/yr for 24 programs. Why would someone buy the $399 single? It's MORE than the membership. It feels like a scam. ZERO people bought it</li>
+<li><strong>Side-by-side comparison forces analysis:</strong> Feature checklists with checkmarks and X marks make people stop and compare instead of act. Analysis = friction = lost sales</li>
+<li><strong>Three separate pricing blocks:</strong> Pricing appears on pages 1, 7, and 17. This isn't strategic repetition — it's desperation that signals "we know you're not buying so we keep showing you the price"</li>
+<li><strong>Content that belongs post-purchase:</strong> Community showcase, AI assistant demo, Apple Store feature, full program catalog — all of this is discovery content for AFTER someone buys. Showing it before purchase is overwhelming and distracting</li>
+</ul></div>
+<div class="ac fx"><div class="cl">✓ The Fix — Based on Fladlien, Kern, and Hormozi</div><ul>
+<li><strong>Total length: 2–3 screens.</strong> Readable in under 2 minutes. The prospect just watched 90 minutes and is WARM — the page confirms the decision, it doesn't re-sell</li>
+<li><strong>Headline as continuation:</strong> "You just learned the technique. Now master it in 28 days."</li>
+<li><strong>Framing:</strong> "For decades, people paid $2,500+ to learn the full Silva system in a live 2-day seminar. Now you can master the complete program from home — at a fraction of the cost"</li>
+<li><strong>Present BOTH options sequentially (not side-by-side):</strong> Talk about the single program first (lower commitment, $99), then introduce the membership as upgrade ("or, for just a bit more, get Silva PLUS 24 additional programs"). Highlight 3–4 membership programs by their OUTCOMES, not product names</li>
+<li><strong>Guarantee front and center:</strong> Not buried in page 7. A visual badge or box directly below pricing: "15 days. Try everything. One-click refund. No hassle."</li>
+<li><strong>3–4 strongest testimonials only:</strong> Business/wealth outcomes. Not 15+ generic cards nobody reads</li>
+<li><strong>REMOVE everything else:</strong> Bio, curriculum, program catalog, community, Apple, AI, Trustpilot, FAQs</li>
+</ul></div>
+</div>
+
+<h4>📐 How the Dropdown Should Look — Mockup</h4>
+<div class="mock">
+<div class="mock-top"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div><div class="mock-url">mindvalley.com/ultramind/live/manifesting-live</div></div>
+<div class="mock-body">
+<div class="mock-hero">
+<p style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--a2);margin-bottom:.4rem">The Silva Ultramind System</p>
+<h2>You just learned the technique.<br>Now master it in 28 days.</h2>
+<p>For decades, people paid $2,500+ to learn the full Silva system in a live 2-day seminar. Now you can master the complete program from home.</p>
+</div>
+
+<div class="mock-section">
+<h4>Choose Your Path</h4>
+<p style="font-size:.82rem;color:var(--t2);margin-bottom:1rem">Get the Silva Ultramind System on its own, or unlock it with 24 additional world-class programs.</p>
+<div class="mock-cg">
+<div class="mock-card">
+<div class="name">Silva Ultramind System</div>
+<p style="font-size:.75rem;color:var(--t3);margin-bottom:.6rem">The complete 28-day program by Vishen Lakhiani</p>
+<div class="price"><span class="was">$399</span>$99</div>
+<p style="font-size:.72rem;color:var(--t3);margin-bottom:.85rem">One-time payment. Lifetime access.</p>
+<div style="background:var(--a);color:#fff;text-align:center;padding:.55rem;border-radius:7px;font-weight:600;font-size:.82rem;margin-bottom:.85rem">Get Silva Ultramind →</div>
+<div class="mock-chk">Complete 28-day program (29 lessons, 11.5 hrs)</div>
+<div class="mock-chk">3 Scenes Technique + all advanced methods</div>
+<div class="mock-chk">Alpha, Theta & Delta level training</div>
+<div class="mock-chk">Private community access</div>
+<div class="mock-chk">Mobile app (iOS + Android)</div>
+<div class="mock-chk">15-day money-back guarantee</div>
+</div>
+<div class="mock-card primary">
+<div class="tag">Best Value — Recommended</div>
+<div class="name">Mindvalley Manifesting Collection</div>
+<p style="font-size:.75rem;color:var(--t3);margin-bottom:.6rem">Silva Ultramind + 24 programs for total transformation</p>
+<div class="price"><span class="was">$299</span>$199<span style="font-size:.82rem;color:var(--t3)">/year</span></div>
+<p style="font-size:.72rem;color:var(--t3);margin-bottom:.85rem">$16.60/month. Cancel anytime.</p>
+<div style="background:var(--g);color:#fff;text-align:center;padding:.55rem;border-radius:7px;font-weight:600;font-size:.82rem;margin-bottom:.85rem">Unlock Everything →</div>
+<div class="mock-chk"><strong>Everything in Silva Ultramind, plus:</strong></div>
+<div style="padding:.75rem 0 .75rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.04)">
+<p style="font-size:.75rem;color:var(--t2);margin-bottom:.35rem">🎯 <strong>Unlimited Abundance</strong> — Remove the 24 hidden abundance blocks holding you back from wealth</p>
+<p style="font-size:.75rem;color:var(--t2);margin-bottom:.35rem">✨ <strong>The Art of Manifesting</strong> — The world's #1 manifesting program: attract opportunities, relationships, and results faster</p>
+<p style="font-size:.75rem;color:var(--t2);margin-bottom:.35rem">🧠 <strong>Quantum Jumping</strong> — Access the version of you who's already achieved your biggest goals and download their strategies</p>
+<p style="font-size:.75rem;color:var(--t2);margin-bottom:.35rem">⚡ <strong>Superbrain</strong> — Unlock accelerated learning and total recall so you absorb more in less time</p>
+<p style="font-size:.72rem;color:var(--t3);margin-bottom:0">+ 20 more programs in manifesting, consciousness, and mind-body healing</p>
+</div>
+<div class="mock-chk">New programs added every year</div>
+<div class="mock-chk">All communities + mobile app</div>
+<div class="mock-chk">15-day money-back guarantee</div>
+</div>
+</div>
+<div class="mock-guar">
+<p style="font-size:1.25rem;margin-bottom:.5rem">🛡️</p>
+<p><strong>15-Day Money-Back Guarantee.</strong> Try everything. Full access. If it's not for you, one-click refund. No emails, no phone calls, no hassle. You only have to say "maybe."</p>
+</div>
+</div>
+
+<div class="mock-section">
+<h4>What Silva Graduates Are Achieving</h4>
+<div class="mock-cg" style="margin-top:.75rem">
+<div class="mock-card"><p style="font-size:.82rem;color:var(--t);font-style:italic;margin-bottom:.6rem">"I started receiving breakthrough inspirations for my business. Programs that amaze even myself. My habits changed without me even trying."</p><p style="font-size:.75rem;color:var(--a2);margin-bottom:0"><strong>Steve Hall</strong> — Founder, Be Aligned Coaching</p></div>
+<div class="mock-card"><p style="font-size:.82rem;color:var(--t);font-style:italic;margin-bottom:.6rem">"Silva guided me away from a bad job and allowed me to find my purpose and start the company I wanted. The mental video technique changed everything."</p><p style="font-size:.75rem;color:var(--a2);margin-bottom:0"><strong>Entrepreneur testimonial</strong></p></div>
+</div>
+</div>
+</div>
+</div>
+
+<h4>Why This Mockup Structure Works</h4>
+<div class="ag">
+<div class="ac fx"><div class="cl">✓ Design Decisions Explained</div><ul>
+<li><strong>Sequential, not side-by-side but still comparable:</strong> Both options are visible for comparison, but single program comes first (lower commitment). Reader naturally compares and sees the membership is obviously better value</li>
+<li><strong>$99 single, not $399:</strong> $99 feels like a no-brainer after 90-min MC. $399 made zero sales. The low entry creates buyers who can be upsold later</li>
+<li><strong>Membership programs listed by OUTCOME:</strong> "Remove the 24 hidden abundance blocks" / "Attract opportunities faster" / "Download strategies from your highest self" — not product names that mean nothing to someone who just watched a Silva MC</li>
+<li><strong>Guarantee is visually prominent:</strong> A boxed element, not footer text. Shield emoji + bold promise. Reduces risk to near-zero</li>
+<li><strong>Only 2 testimonials:</strong> Both about business/career transformation. Quality over quantity. Nobody reads 15 testimonial cards</li>
+<li><strong>Total page: 2 screens.</strong> Headline → pricing → guarantee → proof → done. The MC did the selling. This page closes</li>
+</ul></div>
+<div class="ac dx"><div class="cl">❌ What Got Cut (vs Current 19 Pages)</div><ul>
+<li>Full Vishen bio — they spent 90 min with him</li>
+<li>7-point "What you'll learn" — they just learned it</li>
+<li>4-part curriculum breakdown — they experienced the methodology</li>
+<li>24-program individual catalog with prices — overwhelming, irrelevant</li>
+<li>Community screenshots — post-purchase discovery</li>
+<li>AI assistant "Eve" demo — post-purchase discovery</li>
+<li>"Featured in 200,000 Apple stores" — doesn't help purchase decision</li>
+<li>Trustpilot embed with individual reviews — one guarantee > Trustpilot</li>
+<li>FAQs — handle in email if needed</li>
+<li>2 of the 3 pricing blocks — one section, presented once, is enough</li>
+<li>"Introducing Mindvalley Manifesting Collection" marketing copy — nobody reads this before buying</li>
+</ul></div>
+</div>
+
+<h4>Pricing Architecture: Before → After</h4>
+<div class="ba">
+<div class="bac bf"><div class="bal">❌ Current Pricing</div><div class="bact"><strong>Single Quest: $399</strong> — 0 buyers, 0% conversion<br><strong>Annual Membership: $199/yr</strong> — 46 buyers, $12,428 revenue<br><strong>Monthly: $49/mo</strong> — 6 buyers, $225 revenue<br><br>Side-by-side feature comparison with checkmarks and X marks. Single program costs MORE than everything plan. Makes no logical sense. Feels like a scam. Forces analysis over action.</div></div>
+<div class="baaw">→</div>
+<div class="bac af"><div class="bal">✓ Recommended Pricing</div><div class="bact"><strong>Single Program: $99</strong> — accessible entry, lifetime access<br><strong>Annual Collection: $199/yr</strong> — "Recommended" tag, visually dominant<br><br>Natural value ladder. "For just $100 more per year, get 24 additional programs." Upgrade is obvious no-brainer. No comparison chart needed. One clear decision. Monthly available but not prominently displayed.</div></div>
+</div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PRIORITIES -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section id="priorities">
+<div class="sl">Action Plan</div>
+<h2>Priority Actions — Ranked by Revenue Impact</h2>
+<p>Not everything at once. These are ranked by expected revenue impact per unit of effort. Fix #1 and #2 first — they have the highest ROI.</p>
+
+<div class="pi"><div class="pr p1">1</div><div class="pb"><h4>Fix the Landing Page — 3.42% → 15%+ signup rate</h4><p><strong>TRIPLES lead volume with zero additional spend.</strong> Rewrite around the dream outcome (wealth/decisions, not intuition). Follow the page structure in Step 2. This is the single highest-ROI change in the entire funnel. If CPL is above $15, this is the fix.</p></div></div>
+<div class="pi"><div class="pr p1">2</div><div class="pb"><h4>Rebuild the Dropdown — 19 pages → 2–3 screens</h4><p>Fix pricing ($99 single, $199 annual). Sequential presentation. Guarantee front-center. Follow the mockup in Step 6. Doubling conversion = ~$10K+ additional revenue per cycle with zero spend.</p></div></div>
+<div class="pi"><div class="pr p2">3</div><div class="pb"><h4>Rewrite Show-Up Emails + Add Pre-Material</h4><p>Each email = different psychological job. Prove the value equation (easy, anyone can do it, likelihood high). Add 5-min warm-up exercise → app. Target show-up rate from 35.5% → 55%+. Every +10% = ~218 more viewers.</p></div></div>
+<div class="pi"><div class="pr p2">4</div><div class="pb"><h4>Rebuild Ads Around Outcomes</h4><p>Test Wealth vs. Healing as outcomes (not mechanisms). Include mechanism clearly ("by training intuition using the Silva Ultramind Method"). Science as credibility. Ensure ad-to-page scent match.</p></div></div>
+<div class="pi"><div class="pr p3">5</div><div class="pb"><h4>Fix the Watch Page</h4><p>Headline → dream outcome with time promise ("In 60 minutes..."). Reduce 20+ timestamps → 3–4 curiosity hooks. Disable forward scrubbing. Add case studies below video. Add post-video CTA to dropdown.</p></div></div>
+<div class="pi"><div class="pr p3">6</div><div class="pb"><h4>Fix the Thank You Page</h4><p>Pre-material warm-up → app (5 min exercise to prime for class). Case study wall (raw comment screenshots). Pre-frame video. Calendar says "60 minutes" with daily reminders. Remove membership upsell and dead UI.</p></div></div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- SCOPE -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<section>
+<div class="sl">Scope & Next Steps</div>
+<h2>What's Covered — and What's Next</h2>
+<div class="sg">
+<div class="sc cv"><div class="scl">✓ Covered in Part 1 (This Report)</div><ul>
+<li>Outcome vs Mechanism vs Proof framework</li>
+<li>Testing error diagnosis (mechanisms vs outcomes)</li>
+<li>Hormozi Value Equation applied to funnel</li>
+<li>Hormozi / Kern / Fladlien expert analysis</li>
+<li>Facebook & Google ad creative — all 12 assets with full data</li>
+<li>Landing page — 10-point copy audit + recommended structure</li>
+<li>Thank you page — full audit + rebuild spec</li>
+<li>Show-up email sequence — all 6 emails audited + new framework</li>
+<li>Masterclass transcript — 90-min content breakdown + mismatch analysis</li>
+<li>Watch page — full audit + before/after</li>
+<li>Sales page (dropdown) — 19-page content inventory + conversion data + mockup</li>
+<li>Pricing architecture — before/after with data</li>
+<li>Priority actions ranked by impact</li>
+</ul></div>
+<div class="sc nx"><div class="scl">○ Coming in Part 2</div><ul>
+<li>Post-dropdown sales email sequence + nurture flow</li>
+<li>Retargeting ad strategy for non-converters</li>
+<li>Post-purchase onboarding and upsell flows</li>
+<li>Cross-pathway optimization (applying learnings to Science, Creativity, Career outcomes)</li>
+<li>Full email copy rewrites</li>
+<li>Sales page is NOT fully covered in Part 2 scope — that's a separate workstream</li>
+</ul></div>
+</div>
+
+<div class="vd purple" style="margin-top:2.5rem">
+<div class="vd-l">The One Takeaway for the Entire Team</div>
+<h3 style="text-align:center">Lead with the dream outcome, not the mechanism.</h3>
+<p style="text-align:center;font-size:1rem;max-width:650px;margin:0 auto">This applies to every ad, every page, every email, and every masterclass across every pathway. The team must internalize <strong>Outcome → Mechanism → Proof</strong> before building or testing any new funnel. The mechanism (intuition, altered states, brainwave science) is the vehicle. The destination (wealth, better decisions, career performance) is what people actually buy.</p>
+</div>
+</section>
+
+<footer style="padding:2.5rem 0;text-align:center;border-top:1px solid rgba(255,255,255,.04);margin-top:2.5rem">
+<p style="font-size:.72rem;color:var(--t3)">Confidential — Mindvalley Pathway Funnel Audit — Part 1 of 2 — April 2026 — v3 Complete</p>
+</footer>
+
+</main>
+</body>
+</html>
